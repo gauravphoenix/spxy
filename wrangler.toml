@@ -1,0 +1,16 @@
+name = "spxy"
+main = "src/index.js"
+compatibility_date = "2025-04-01"
+
+[observability]
+enabled = true
+
+[vars]
+# When "on", every request must include a valid token.
+# Set the token with: npx wrangler secret put AUTH_TOKEN
+# Set to "off" to disable authentication.
+AUTH_MODE = "on"
+
+[[rules]]
+type = "Text"
+globs = ["**/*.txt"]

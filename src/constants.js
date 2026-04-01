@@ -6,7 +6,7 @@ export const CODEBERG_API = "https://codeberg.org/api/v1";
 export const SOURCEHUT_API = "https://git.sr.ht/api";
 
 export const CACHE_ORIGIN = "https://githead-guard.internal";
-export const CACHE_VERSION = "v2";
+export const CACHE_VERSION = "v3";
 export const VERIFY_CACHE_TTL = 86400 * 30;
 
 export const ALL_CHECK_IDS = new Set([
@@ -23,13 +23,12 @@ export const CI_PUBLISHER_RE = /github actions|gitlab|circleci|buildkite|jenkins
 
 export const MAX_PACKUMENT_BYTES = 8 * 1024 * 1024;
 
+import disposableDomainsText from "./data/disposable-domains.txt";
+import suspiciousDomainsText from "./data/suspicious-domains.txt";
+const parseLines = (txt) => txt.trim().split("\n").map(d => d.trim()).filter(Boolean);
 export const SUSPICIOUS_EMAIL_DOMAINS = new Set([
-  "proton.me", "protonmail.com", "protonmail.ch",
-  "tutanota.com", "tutamail.com", "tuta.io",
-  "guerrillamail.com", "guerrillamail.de", "grr.la",
-  "mailinator.com", "tempmail.com", "throwaway.email",
-  "yopmail.com", "sharklasers.com", "guerrillamailblock.com",
-  "maildrop.cc", "dispostable.com",
+  ...parseLines(disposableDomainsText),
+  ...parseLines(suspiciousDomainsText),
 ]);
 
 export const TRUSTED_TARBALL_HOSTS = new Set([
