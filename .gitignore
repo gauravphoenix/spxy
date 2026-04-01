@@ -1,0 +1,4 @@
+.claude/settings.json
+.dev.vars
+.DS_Store
+/.wrangler
